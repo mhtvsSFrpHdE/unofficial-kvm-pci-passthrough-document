@@ -70,7 +70,12 @@ https://chrisirwin.ca/posts/discard-with-kvm-2020/
 https://chrisirwin.ca/posts/discard-with-kvm/  
 https://dustymabe.com/2013/06/11/recover-space-from-vm-disk-images-by-using-discardfstrim/  
 
-I'll use VirtIO SCSI controller for qcow2 disk files
+Linux usually has built in driver support for default VirtIO Disk or VirtIO SCSI  
+If guest OS is **Windows** and previously run on Hyper-V  
+I'll use VirtIO SCSI controller for qcow2 disk files in the end  
+but at the beginning only add disk to **SATA** controller  
+later in optimize performance section there will be a tutorial  
+tells how to install driver and change to VirtIO SCSI controller
 
 In Virtual Machine Manager,  
 when adding disk, set Cache Mode to "none", Discard mode to "unmap"  
@@ -81,11 +86,6 @@ It will looks like
   <driver name="qemu" type="qcow2" cache="none" discard="unmap" detect_zeroes="unmap"/>
   <target dev="sda" bus="scsi" rotation_rate="1"/>
 ```
-
-If guest OS is **Windows** and previously run on Hyper-V  
-only add disk to **SATA** controller  
-later in optimize performance section there will be a tutorial  
-tells how to install driver and change to VirtIO SCSI controller
 
 ### Convert exist vhdx file and reduce file size
 Convert vhdx to qcow2  
@@ -157,7 +157,7 @@ Or type path directly to "Select or create custom storage" like
 
 Note that use "Browse Local" instead of add path to pool  
 once it goes to pool it lose `by-id` and become something like `sda`  
-You may be able to go to `/dev/disk/by-id  
+You may be able to go to `/dev/disk/by-id`  
 then drag `by-id` from address bar to left panel,  
 this should add bookmark depending on your desktop environment,  
 So you don't have to browse to that location each time  
