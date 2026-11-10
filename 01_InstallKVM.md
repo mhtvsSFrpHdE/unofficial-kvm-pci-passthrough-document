@@ -1,4 +1,4 @@
-## Install KVM
+# Install KVM
 The fact is, you don't install KVM
 
 Choose debian 13 as host OS
@@ -25,11 +25,11 @@ Reboot to apply
 https://serverfault.com/questions/941535/systemd-running-custom-vm-shutdown-script-before-the-standard-libvirt-guests-s
 
 Write your own shutdown scripts to call `virsh` commands  
-Virtual machine but still running after script down will be hibernate  
+Virtual machine still running after script down will be hibernate  
 `nano kvm-shutdown-action.sh`
 
 I do have one if you don't write your own  
-check `Tools\toggle\toggle.sh` and it's `README.md`
+check `Tools/toggle/toggle.sh` and it's `README.md`
 
 Run script on shutdown but before hibernate  
 `sudo nano /etc/systemd/system/kvm-shutdown-action.service`

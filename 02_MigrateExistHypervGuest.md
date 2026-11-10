@@ -1,3 +1,5 @@
+# Migrate exist Hyper-V guest
+
 ## About fstab
 After you join Linux world  
 Soon you'll meet how to mount your drive to a folder on boot automatically  
@@ -73,11 +75,17 @@ I'll use VirtIO SCSI controller for qcow2 disk files
 In Virtual Machine Manager,  
 when adding disk, set Cache Mode to "none", Discard mode to "unmap"  
 Add detect_zeros unmap to disk XML to prevent "File size" grow on write zero behavior  
-Add rotation rate tell guest OS this is SSD
+Add rotation rate tell guest OS this is SSD  
+It will looks like
 ```
   <driver name="qemu" type="qcow2" cache="none" discard="unmap" detect_zeroes="unmap"/>
   <target dev="sda" bus="scsi" rotation_rate="1"/>
 ```
+
+If guest OS is **Windows** and previously run on Hyper-V  
+only add disk to **SATA** controller  
+later in optimize performance section there will be a tutorial  
+tells how to install driver and change to VirtIO SCSI controller
 
 ### Convert exist vhdx file and reduce file size
 Convert vhdx to qcow2  
@@ -103,7 +111,7 @@ a full shrink require empty space larger than 2 TB
 Create small disk and grow on need in future is more suitable
 
 You can combine them together, cd to a large working directory,  
-then use `Tools\convertDisk\convertDisk.sh`
+then use `Tools/convertDisk/convertDisk.sh`
 
 After done sparse, once these files are need to copy between drives  
 use argument to keep sparse instead of take full space  
@@ -112,6 +120,22 @@ use argument to keep sparse instead of take full space
 Default permission of virt-manager created file is  
 `sudo chown root:root <disk file.qcow2>`  
 `sudo chmod 600 <disk file.qcow2>`
+
+### Disk order
+Disk order in device manager is configured by
+```
+  <target dev=...
+```
+sda:0, sdb:1, sdc:2, etc
+
+Also, in
+```
+  <address...controller...bus...target...
+```
+"unit=" is to specify controller port number,  
+like how SATA 0, SATA 1 on motherboard  
+can be verify in "Controller SCSI" or "Controller VirtIO SCSI"  
+usually sda will be unit 0, sdb will be unit 1, etc
 
 ### Linux zero free
 In Linux guest OS, create largest possible zero file  
