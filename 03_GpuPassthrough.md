@@ -130,7 +130,7 @@ Test with Windows powershell client
 
 If Windows optional feature OpenSSH Client is installed  
 but ssh command not available  
-Add this path to system variable  
+Add this path to system environment variable  
 `C:\Windows\System32\OpenSSH`
 
 ## GPU passthrough  

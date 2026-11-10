@@ -17,7 +17,7 @@ https://www.linux-kvm.org/page/WindowsGuestDrivers/Download_Drivers
 "Latest VirtIO drivers for Windows from Fedora"  
 https://docs.fedoraproject.org/en-US/quick-docs/creating-windows-virtual-machines-using-virtio-drivers/index.html
 
-Then use this tutorial to move system drive to VirtIO SCSI
+Then use this tutorial to move system drive to VirtIO SCSI  
 https://www.reddit.com/r/Proxmox/comments/1d4jxc6/how_do_i_get_past_the_inaccessible_boot_device/
 
 Change exist "Controller SCSI" Model to "VirtIO SCSI",  
