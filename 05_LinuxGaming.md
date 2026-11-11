@@ -286,6 +286,42 @@ Once steam install done, back to start-proxifier terminal tab,
 press Ctrl+Z then type command to stop it  
 `sudo ./stop-proxifier.sh`
 
+## Let game use more RAM
+`swappiness` default is 60
+
+`sudo sysctl -w vm.swappiness=10`  
+`sudo nano /etc/sysctl.conf`
+```
+vm.swappiness=10
+```
+No reboot required
+
+## Connect to host OS
+Confirm TigetVNC packet name  
+`sudo dnf search tigervnc`  
+`sudo dnf install tigervnc`
+
+Save VNC config file in root to protect information  
+`cd ~`  
+`mkdir VNC`  
+`cd VNC`  
+`sudo nano vncProfile.tigervnc`
+```
+TigerVNC Configuration file Version 1.0
+
+ServerName=<server address>:<port, 6001 as example>
+```
+
+Save password in root  
+`sudo nano connectVNC.sh`
+```
+VNC_PASSWORD=<vnc server password> /usr/bin/vncviewer ./vncProfile.tigervnc
+```
+
+Try connect  
+`sudo chmod +x ./connectVNC.sh`  
+`sudo ./connectVNC.sh`
+
 ## Bypass virtual machine detect
 Some game refuse to launch in a Linux virtual machine, whoa...  
 https://forums.unraid.net/topic/127648-gaming-vm-cannot-run-under-virtual-machine-error-when-launching-game/  
