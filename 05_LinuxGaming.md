@@ -132,7 +132,7 @@ Confirm kde package name
 
 Login to KDE, verify is using wayland  
 If not, you may want to do something about it  
-echo $XDG_SESSION_TYPE
+`echo $XDG_SESSION_TYPE`
 
 Install Nvidia graphics  
 Shutdown and add GPU passthrough, boot with gpu
