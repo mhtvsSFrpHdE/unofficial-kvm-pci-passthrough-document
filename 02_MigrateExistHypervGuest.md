@@ -62,7 +62,7 @@ may fail to mount on boot and risk in Linux system not boot
 so it's not reliable to mount NTFS on boot with fstab
 
 You can just use same file system that your Linux system installer does to your system parition  
-for store your KVM virtual disk without ever think about it,  
+for store your KVM virtual disk without even think about it,  
 like debian use ext4, fedora use btrfs
 
 ### Disk and Controller settings
