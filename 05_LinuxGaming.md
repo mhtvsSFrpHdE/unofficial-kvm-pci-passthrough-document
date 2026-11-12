@@ -312,6 +312,27 @@ Try connect
 `sudo chmod +x ./connectVNC.sh`  
 `sudo ./connectVNC.sh`
 
+## Connect to Windows RDP
+Remmina doesn't support disable DPI scaling per app  
+and cause blur on KDE default 135% scaling  
+Export rdp file, open and edit `screen mode id:i:`,  
+set to 1 for windowed, 2 for fullscreen
+```
+screen mode id:i:1
+```
+Then create bash script  
+`nano rdp.sh`
+```
+#!/bin/bash
+
+# Optional, wait for it to boot
+#sleep 30
+
+xfreerdp /path/to/rdp/file.rdp /u:<username> /p:<password> &
+```
+`chmod +x rdp.sh`  
+`./rdp.sh`
+
 ## Let game use more RAM
 `swappiness` default is 60
 
