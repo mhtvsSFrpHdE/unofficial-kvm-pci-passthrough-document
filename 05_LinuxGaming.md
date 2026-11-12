@@ -113,9 +113,10 @@ Reinstall meta package to fill "optional" dependencies
 `sudo apt install qemu-system libvirt-daemon-system virt-manager`
 
 ## Fedora with KDE wayland
-For unknown reason grub will hang  
-on press ender during wait for 5s to boot timer...  
-press other key has no issue, I'll just ignore it
+For unknown reason when pass PS/2 input directly to guest  
+Press Enter during wait for 5s to boot timer, grub will hang  
+Press other key has no issue, Ctrl+Alt+Delete can reboot virtual machine  
+So I'll just ignore it
 
 https://fedoraproject.org/misc  
 Pick Fedora Everything iso to install without default desktop environment  
